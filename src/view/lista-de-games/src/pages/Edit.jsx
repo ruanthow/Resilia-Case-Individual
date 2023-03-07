@@ -6,72 +6,61 @@ import { useParams, useNavigate } from 'react-router-dom';
 const Edit = () => {
   const navigate = useNavigate();
   const { id } = useParams(); // Obtém o id do produto a partir dos parâmetros da rota
-  const [produto, setProduto] = useState({
-    id: id,
-    name: "",
-    description: "",
-    price: 0
-  });
+  const [game, setGame] = useState({});
+  let [name, setName] = React.useState('');
+  let [gender, setGender] = React.useState('');
+  let [dateStart, setDateStart] = React.useState('');
+  let [dateEnd, setDateEnd] = React.useState('');
+  let [rating, setRating] = React.useState('');
+
+  let editGame = {
+    name_game: name,
+    gender_name: gender,
+    date_start: dateStart,
+    date_end: dateEnd,
+    rating: rating
+  }
 
   useEffect(() => {
-    axios.get(`http://localhost:5656/produto/${id}`).then((res) => {
+    axios.get(`http://localhost:4200/game/${id}`).then((res) => {
       console.log(res.data);
-      setProduto(res.data);
+      setGame(res.data);
     });
   }, [id]);
 
   const handleSubmit = async (e) => {
-    await axios.post(`http://localhost:5656/produto/update`, produto);
-    navigate('/home');
+    await axios.put(`http://localhost:4200/update/${id}`, editGame);
+    console.log(editGame);
     // Lógica para lidar com o resultado da requisição de atualização
   };
 
   return (
-    <div className="container mt-5">
-      <h1>Editar Produto</h1>
-      <form>
-        <div className="form-group">
-          <label className='fw-bold m-2 ' htmlFor="nome">Nome</label>
-          <input
-            type="text"
-            className="form-control"
-            id="nome"
-            name="name"
-            value={produto.name}
-            onChange={(e) => setProduto({ ...produto, name: e.target.value })}
-          />
+    <div className="container text-center mt-5">
+      <h1>Cadastrar produto</h1>
+      <form >
+        <div className="form-floating mb-3">
+          <input onChange={(e) => { setName(e.target.value) }} type="text" className="form-control" name="name" id="name" aria-describedby="nome" />
+          <label className='fw-bold' >Nome</label>
         </div>
-        <div className="form-group">
-          <label className='fw-bold m-2 ' htmlFor="descricao">Descrição</label>
-          <textarea
-            className="form-control"
-            id="descricao"
-            name="descricao"
-            rows="3"
-            value={produto.description}
-            onChange={(e) =>
-              setProduto({ ...produto, description: e.target.value })
-            }
-          ></textarea>
+        <div className="form-floating mb-3">
+          <input onChange={(e) => { setGender(e.target.value) }} type="text" className="form-control" name="name" id="name" aria-describedby="nome" />
+          <label className='fw-bold' >Genero</label>
         </div>
-        <div className="form-group">
-          <label className='fw-bold m-2 ' htmlFor="preco">Preço</label>
-          <input
-            type="number"
-            className="form-control"
-            id="preco"
-            name="preco"
-            step="0.01"
-            value={produto.price}
-            onChange={(e) => setProduto({ ...produto, price: e.target.value })}
-          />
+        <div className="form-floating mb-3">
+          <input onChange={(e) => { setDateStart(e.target.value) }} type="date" className="form-control" id="description" name="description" rows="3" />
+          <label className='fw-bold'  >Data de Inicio</label>
         </div>
-        <div className='mt-2' >
-        <a onClick={handleSubmit} type="button" className="btn btn-primary">
-          Salvar
-        </a>
+        <div className="form-floating mb-3">
+          <input onChange={(e) => { setDateEnd(e.target.value) }} type="date" step="any" className="form-control" id="price" name="price" />
+          <label className='fw-bold'  >Data de Fim</label>
         </div>
+        <div className="form-floating mb-3">
+          <input onChange={(e) => { setRating(e.target.value) }} type="number" step="any" className="form-control" id="price" name="price" />
+          <label className='fw-bold'  >Avaliação</label>
+        </div>
+        <a href='/home' onClick={handleSubmit} type="button" className="btn btn-primary">Cadastrar</a>
       </form>
+
     </div>
   );
 };

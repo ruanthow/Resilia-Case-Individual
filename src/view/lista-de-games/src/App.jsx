@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Edit from './pages/Edit';
 import Home from './pages/Home';
@@ -16,7 +16,7 @@ function App() {
             <Route path='/' element={<Landing />} />
             <Route path='/home' element={<Home />} />
             <Route path='/games/novo' element={<Novo />} />
-            <Route path="/games/:id/editar" element={<Edit />} />
+            <Route path="/games/update/:id" element={<Edit />} />
           </Routes>
         </div>
       </BrowserRouter>

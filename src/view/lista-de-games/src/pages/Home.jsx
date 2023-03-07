@@ -31,6 +31,7 @@ const Home = () => {
               <th scope="col">GENERO</th>
               <th scope="col">DATA INICIO</th>
               <th scope="col">DATA TERMINO</th>
+              <th scope="col">Avaliação</th>
             </tr>
           </thead>
           <tbody>
@@ -38,16 +39,16 @@ const Home = () => {
               games.length > 0 ? (
                 games.map((game) => {
                   return (
-                    <tr key={game.id}>
-                      <td>{game.id_name}</td>
+                    <tr key={game.id_game}>
+                      <td>{game.id_game}</td>
                       <td>{game.name_game}</td>
                       <td>{game.gender_name}</td>
                       <td>{game.date_start}</td>
                       <td>{game.date_end}</td>
                       <td>{game.rating}</td>
                       <td>
-                        <a className="btn btn-primary m-1" href={`/update/${game.id}`}>Editar</a>
-                        <a type="button" href="/home" className="btn btn-danger m-1" onClick={() => handleDelete(game.id)}>Excluir</a>
+                        <a className="btn btn-primary m-1" href={`/games/update/${game.id_game}`}>Editar</a>
+                        <a type="button" href="/home" className="btn btn-danger m-1" onClick={() => handleDelete(game.id_game)}>Excluir</a>
                       </td>
                     </tr>
                   )
@@ -62,7 +63,7 @@ const Home = () => {
         </table>
         <div className="row">
           <div className="col">
-            <a className="btn btn-success" href="/games/novo">Cadastrar novo produto</a>
+            <a className="btn btn-success" href="/games/novo">Cadastrar novo game</a>
           </div>
         </div>
       </div>

@@ -9,16 +9,16 @@ const Novo = () => {
   let [rating, setRating] = React.useState('');
 
   let game = {
-    name,
-    gender,
-    dateStart,
-    dateEnd,
-    rating
+    name_game: name,
+    gender_name: gender,
+    date_start: dateStart,
+    date_end: dateEnd,
+    rating: rating
   }
 
   const handleSubmit = () => {
     console.log(game);
-    axios.post('http://localhost:4200/create', game )
+    axios.post('http://localhost:4200/create', game)
   }
 
 
@@ -35,7 +35,7 @@ const Novo = () => {
           <label className='fw-bold' >Genero</label>
         </div>
         <div className="form-floating mb-3">
-          <input onChange={(e) => { setDateStart(e.target.value) }} type="date" className="form-control" id="description" name="description" rows="3"/>
+          <input onChange={(e) => { setDateStart(e.target.value) }} type="date" className="form-control" id="description" name="description" rows="3" />
           <label className='fw-bold'  >Data de Inicio</label>
         </div>
         <div className="form-floating mb-3">

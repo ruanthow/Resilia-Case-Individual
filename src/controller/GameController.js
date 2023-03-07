@@ -62,5 +62,17 @@ module.exports = {
         } catch (error) {
             return res.send("Houve um erro ao atualizar o game, entre em contato com o adm.")
         }
+    },
+
+    async findOne(req, res) {
+        try {
+            const id = req.params.id
+            const getGame = await GameModel.findByPk(id)
+            return res.json(getGame)
+        } catch (error) {
+            return res.send("Houve um erro ao achar o game, entre em contato com o adm.")
+        }
     }
+
+
 }
