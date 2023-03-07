@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21",
+    "sequelize": "^6.29.0",
+    "sqlite3": "^5.1.4"
+  },
+  "name": "resilia-case-individual",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruanthow/Resilia-Case-Individual.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruanthow/Resilia-Case-Individual/issues"
+  },
+  "homepage": "https://github.com/ruanthow/Resilia-Case-Individual#readme",
+  "description": ""
+}
